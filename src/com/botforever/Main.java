@@ -15,7 +15,7 @@ public class Main {
         g.addEdge("f", new String[]{"d", "c", "v"});
         g.addEdge("v", new String[]{"c", "f"});
         g.print();
-        g.bfs("z");
+        g.shortest("s","v");
     }
 
     public static void main(String[] args) {

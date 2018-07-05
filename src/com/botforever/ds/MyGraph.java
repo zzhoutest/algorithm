@@ -57,6 +57,7 @@ public class MyGraph {
             vertices[i].parent = null;
         }
     }
+    
     /*
     BFS (V, Adj, s):
         level = {s:0}
@@ -74,12 +75,12 @@ public class MyGraph {
             frontier = next
             i += 1
      */
-    public void bfs(String vertex) {
-        MyNode s = findVertex(vertex);
+    public void bfs(MyNode s) {
+        this.reset();
         if (s != null) {
             s.level = 0;
             s.parent = null;
-            System.out.print(s.data + " ");
+            //System.out.println(s.data + " null"  + " " + s.level);
         }
         int i = 1;
         MyLinkedList frontier = new MyLinkedList(s);
@@ -93,7 +94,7 @@ public class MyGraph {
                         v.level = i;
                         v.parent = u;
                         next.append(v);
-                        System.out.print(v.data + " ");
+                        //System.out.println(v.data + " " + v.parent.data + " " + v.level);
                     }
                 }
                 u = u.next;
@@ -101,7 +102,28 @@ public class MyGraph {
             frontier = next;
             i++;
         }
+    }
+
+    public void shortest(String s, String e) {
         System.out.println();
-        this.reset();
+        System.out.print("shortest route between " + s + " and " + e + ": ");
+        MyNode start = findVertex(s);
+        MyNode end = findVertex(e);
+        if (start != null && end != null) {
+            bfs(start);
+            if (end.level != -1) {
+                MyLinkedList route = new MyLinkedList();
+                route.append(end);
+                while (end.parent != null) {
+                    route.append(end.parent);
+                    end = end.parent;
+                }
+                route.print();
+            } else {
+                System.out.println("not found.");
+            }
+        } else {
+            System.out.println("invalid input.");
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.botforever.ds;
 
 public class MyLinkedList {
-    public MyNode head = null;
+    public MyNode head;
 
     public MyLinkedList() {
         this.head = null;
@@ -19,6 +19,7 @@ public class MyLinkedList {
     }
 
     public void append(MyNode end) {
+        end.next = null;
         MyNode node = head;
         if (head == null) {
             this.head = end;
@@ -55,4 +56,17 @@ public class MyLinkedList {
         }
         return l;
     }
+
+    public  void print() {
+        MyNode node = head;
+        while (node != null) {
+            System.out.print(node.data);
+            node = node.next;
+            if (node != null) {
+                System.out.print("->");
+            }
+        }
+        System.out.println();
+    }
+
 }
