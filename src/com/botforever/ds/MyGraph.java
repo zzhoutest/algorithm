@@ -52,12 +52,17 @@ public class MyGraph {
     }
 
     public void reset() {
-        for (int i = 0; i < vertices.length; i++) {
-            vertices[i].level = -1;
-            vertices[i].parent = null;
+        for (MyNode vertex : vertices) {
+            vertex.level = -1;
+            vertex.parent = null;
         }
     }
-    
+
+    public void resetNext() {
+        for (MyNode vertex : vertices) {
+            vertex.next = null;
+        }
+    }
     /*
     BFS (V, Adj, s):
         level = {s:0}
@@ -102,6 +107,7 @@ public class MyGraph {
             frontier = next;
             i++;
         }
+        resetNext();
     }
 
     public void shortest(String s, String e) {

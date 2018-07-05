@@ -19,7 +19,6 @@ public class MyLinkedList {
     }
 
     public void append(MyNode end) {
-        end.next = null;
         MyNode node = head;
         if (head == null) {
             this.head = end;
