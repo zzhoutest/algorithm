@@ -118,13 +118,7 @@ public class MyGraph {
         if (start != null && end != null) {
             bfs(start);
             if (end.level != -1) {
-                MyLinkedList route = new MyLinkedList();
-                route.append(end);
-                while (end.parent != null) {
-                    route.append(end.parent);
-                    end = end.parent;
-                }
-                route.print();
+                end.printParents();
             } else {
                 System.out.println("not found.");
             }
